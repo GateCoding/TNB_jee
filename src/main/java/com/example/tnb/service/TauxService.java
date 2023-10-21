@@ -4,9 +4,11 @@ import com.example.tnb.dao.IDao;
 import com.example.tnb.entity.Taux;
 import com.example.tnb.repository.TauxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TauxService implements IDao<Taux> {
     @Autowired
     private TauxRepository tr;

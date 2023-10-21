@@ -4,8 +4,11 @@ import com.example.tnb.dao.IDao;
 import com.example.tnb.entity.Terrain;
 import com.example.tnb.repository.TerrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class TerrainService implements IDao<Terrain> {
 
     @Autowired

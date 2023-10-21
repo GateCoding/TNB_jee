@@ -14,14 +14,12 @@ public class RedevableController {
     RedevableService rc;
 
     @PostMapping("/redevable/save")
-    public void SaveRedevable(@RequestBody Redevable redevable){
-        System.out.println("test : "+redevable);
+    public void saveRedevable(@RequestBody Redevable redevable){
         rc.save(redevable);
     }
 
     @GetMapping("/redevables")
     public List<Redevable> getAllRedevables(){
-//        System.out.println("test : "+redevable);
         return rc.findAll();
     }
 

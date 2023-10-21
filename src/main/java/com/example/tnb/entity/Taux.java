@@ -1,9 +1,6 @@
 package com.example.tnb.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Taux {
@@ -14,12 +11,17 @@ public class Taux {
     private double prix;
     private int annee;
 
+    @ManyToOne
+    @JoinColumn(name = "categorie_id")
+    private Categorie categorie;
+
     public Taux() {
     }
 
-    public Taux(double prix, int annee) {
+    public Taux(double prix, int annee, Categorie categorie) {
         this.prix = prix;
         this.annee = annee;
+        this.categorie = categorie;
     }
 
     public long getId() {
@@ -46,12 +48,21 @@ public class Taux {
         this.annee = annee;
     }
 
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
     @Override
     public String toString() {
         return "Taux{" +
                 "id=" + id +
                 ", prix=" + prix +
                 ", annee=" + annee +
+                ", categorie=" + categorie +
                 '}';
     }
 }

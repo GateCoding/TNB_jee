@@ -4,9 +4,11 @@ import com.example.tnb.dao.IDao;
 import com.example.tnb.entity.Taxe;
 import com.example.tnb.repository.TaxeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TaxeService implements IDao<Taxe> {
     @Autowired
     private TaxeRepository tr;
