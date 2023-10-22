@@ -15,6 +15,9 @@ public class TaxeService implements IDao<Taxe> {
 
     @Override
     public Taxe save(Taxe o) {
+        double surface = o.getTerrain().getSurface();
+        double prix= o.getTaux().getPrix();
+        o.setCost(prix*surface);
         return tr.save(o);
     }
 

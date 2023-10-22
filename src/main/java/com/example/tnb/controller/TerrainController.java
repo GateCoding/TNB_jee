@@ -1,6 +1,8 @@
 package com.example.tnb.controller;
 
+import com.example.tnb.entity.Redevable;
 import com.example.tnb.entity.Terrain;
+import com.example.tnb.service.RedevableService;
 import com.example.tnb.service.TerrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ public class TerrainController {
 
     @Autowired
     TerrainService ts;
+    @Autowired
+    RedevableService rs;
 
     @GetMapping("/terrain")
     public List<Terrain> getAllTerrain(){
@@ -24,4 +28,10 @@ public class TerrainController {
         ts.save(t);
     }
 
+    @GetMapping("/terrain/redevable")
+    public List<Terrain> getTerrainByRevendevale(String cin){
+        Redevable r = rs.findByCin(cin);
+        
+        return null;
+    }
 }
