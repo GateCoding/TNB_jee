@@ -19,13 +19,17 @@ public class Taxe {
     @JoinColumn(name = "terrain_id")
     private Terrain terrain;
 
+
+
+    private Double cost;
     public Taxe() {
     }
 
-    public Taxe(boolean pay, Taux taux, Terrain terrain) {
+    public Taxe(boolean pay, Taux taux, Terrain terrain, Double cost) {
         this.pay = pay;
         this.taux = taux;
         this.terrain = terrain;
+        this.cost= cost;
     }
 
     public long getId() {
@@ -59,7 +63,13 @@ public class Taxe {
     public void setTerrain(Terrain terrain) {
         this.terrain = terrain;
     }
+    public Double getCost() {
+        return cost;
+    }
 
+    public void setCost(Double cost) {
+        cost = cost;
+    }
     @Override
     public String toString() {
         return "Taxe{" +
