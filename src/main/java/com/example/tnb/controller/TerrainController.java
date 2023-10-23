@@ -29,9 +29,7 @@ public class TerrainController {
     }
 
     @GetMapping("/terrain/redevable")
-    public List<Terrain> getTerrainByRevendevale(String cin){
-        Redevable r = rs.findByCin(cin);
-        
-        return null;
+    public List<Terrain> getTerrainByRevendevale(@RequestParam("cin") String cin){
+        return ts.findByRedevableCin(cin);
     }
 }

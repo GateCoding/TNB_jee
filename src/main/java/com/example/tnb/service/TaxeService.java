@@ -2,8 +2,10 @@ package com.example.tnb.service;
 
 import com.example.tnb.dao.IDao;
 import com.example.tnb.entity.Taxe;
+import com.example.tnb.entity.Terrain;
 import com.example.tnb.repository.TaxeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
 public class TaxeService implements IDao<Taxe> {
     @Autowired
     private TaxeRepository tr;
+    @Autowired
+    private TerrainService terrainService;
 
     @Override
     public Taxe save(Taxe o) {
@@ -32,7 +36,7 @@ public class TaxeService implements IDao<Taxe> {
     }
 
     @Override
-    public Taxe findById(int id) {
+    public Taxe findById(long id) {
         return tr.findById(id);
     }
 
@@ -40,4 +44,12 @@ public class TaxeService implements IDao<Taxe> {
     public List<Taxe> findAll() {
         return tr.findAll();
     }
+
+
+
+    public List<Taxe> findByTerrain(Terrain t){
+        Terrain terrain = terrainService.findById(t.getId());
+        return null;
+    }
+
 }

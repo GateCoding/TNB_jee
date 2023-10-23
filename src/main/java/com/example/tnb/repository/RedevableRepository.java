@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RedevableRepository extends JpaRepository<Redevable, Integer> {
-    Redevable findById(int id);
+    Redevable findById(long id);
     Redevable findByCin(String cin);
 }

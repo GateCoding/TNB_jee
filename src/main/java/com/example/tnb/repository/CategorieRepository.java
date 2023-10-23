@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategorieRepository extends JpaRepository<Categorie, Integer> {
-    Categorie findById(int id);
+    Categorie findById(long id);
 }
