@@ -36,7 +36,7 @@ public class Terrain {
         this.taxes = taxes;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

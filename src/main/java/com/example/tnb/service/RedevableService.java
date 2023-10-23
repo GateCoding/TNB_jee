@@ -30,9 +30,10 @@ public class RedevableService implements IDao<Redevable> {
     }
 
     @Override
-    public Redevable findById(int id) {
+    public Redevable findById(long id) {
         return rr.findById(id);
     }
+
     public Redevable findByCin(String cin) {
         return rr.findByCin(cin);
     }

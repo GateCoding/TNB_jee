@@ -30,7 +30,7 @@ public class CategorieService implements IDao<Categorie> {
     }
 
     @Override
-    public Categorie findById(int id) {
+    public Categorie findById(long id) {
         return tr.findById(id);
     }
 

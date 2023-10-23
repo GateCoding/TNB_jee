@@ -29,13 +29,19 @@ public class TerrainService implements IDao<Terrain> {
     tr.delete(id);
     }
 
+
+
     @Override
-    public Terrain findById(int id) {
+    public Terrain findById(long id) {
         return tr.findById(id);
     }
 
     @Override
     public List<Terrain> findAll() {
         return tr.findAll();
+    }
+
+    public List<Terrain> findByRedevableCin(String cin){
+        return tr.findByRedevableCin(cin);
     }
 }

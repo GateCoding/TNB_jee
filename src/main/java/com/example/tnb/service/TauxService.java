@@ -29,7 +29,7 @@ public class TauxService implements IDao<Taux> {
     }
 
     @Override
-    public Taux findById(int id) {
+    public Taux findById(long id) {
         return tr.findById(id);
     }
 
