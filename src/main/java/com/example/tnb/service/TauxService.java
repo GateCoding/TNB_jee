@@ -1,39 +1,33 @@
 package com.example.tnb.service;
 
-import com.example.tnb.dao.IDao;
 import com.example.tnb.entity.Taux;
-import com.example.tnb.repository.TauxRepository;
+import com.example.tnb.dao.TauxDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TauxService implements IDao<Taux> {
+public class TauxService {
     @Autowired
-    private TauxRepository tr;
+    private TauxDao tr;
 
-    @Override
     public Taux save(Taux o) {
         return tr.save(o);
     }
 
-    @Override
     public void update(Taux o) {
         tr.save(o);
     }
 
-    @Override
     public void delete(Taux id) {
         tr.delete(id);
     }
 
-    @Override
     public Taux findById(int id) {
         return tr.findById(id);
     }
 
-    @Override
     public List<Taux> findAll() {
         return tr.findAll();
     }

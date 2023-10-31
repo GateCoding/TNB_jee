@@ -1,9 +1,5 @@
 package com.example.tnb;
 
-import com.example.tnb.entity.Categorie;
-import com.example.tnb.entity.Redevable;
-import com.example.tnb.service.CategorieService;
-import com.example.tnb.service.RedevableService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

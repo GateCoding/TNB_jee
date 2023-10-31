@@ -1,4 +1,4 @@
-package com.example.tnb.controller;
+package com.example.tnb.ws;
 
 import com.example.tnb.entity.Taxe;
 import com.example.tnb.service.TaxeService;
