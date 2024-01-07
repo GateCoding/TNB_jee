@@ -1,7 +1,7 @@
 package com.example.tnb.service;
 
 import com.example.tnb.entity.Categorie;
-import com.example.tnb.dao.CategorieDao;
+import com.example.tnb.repository.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,25 +11,25 @@ import java.util.List;
 public class CategorieService {
 
     @Autowired
-    private CategorieDao tr;
+    private CategorieRepository cr;
 
     public Categorie save(Categorie o) {
-        return tr.save(o);
+        return cr.save(o);
     }
 
     public void update(Categorie o) {
-        tr.save(o);
+        cr.save(o);
     }
 
     public void delete(Categorie id) {
-        tr.delete(id);
+        cr.delete(id);
     }
 
-    public Categorie findById(int id) {
-        return tr.findById(id);
+    public Categorie findById(long id) {
+        return cr.findById(id);
     }
 
     public List<Categorie> findAll() {
-        return tr.findAll();
+        return cr.findAll();
     }
 }

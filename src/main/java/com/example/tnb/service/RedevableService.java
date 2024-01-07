@@ -1,15 +1,16 @@
 package com.example.tnb.service;
 
 import com.example.tnb.entity.Redevable;
-import com.example.tnb.dao.RedevableDao;
+import com.example.tnb.repository.RedevableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class RedevableService {
+
     @Autowired
-    RedevableDao rr;
+    RedevableRepository rr;
 
     public Redevable save(Redevable o) {
 
@@ -25,8 +26,8 @@ public class RedevableService {
         rr.delete(id);
     }
 
-    public Redevable findById(int id) {
-        return rr.findById(id);
+    public Redevable findByCin(String cin) {
+        return rr.findByCin(cin);
     }
 
     public List<Redevable> findAll() {

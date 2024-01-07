@@ -23,4 +23,5 @@ public class CategorieController {
     public void saveCategorie(@RequestBody Categorie c){
         cs.save(c);
     }
+
 }

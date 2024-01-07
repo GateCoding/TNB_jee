@@ -1,9 +1,9 @@
 package com.example.tnb.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import net.minidev.json.annotate.JsonIgnore;
+
+import java.util.List;
 
 @Entity
 public class Redevable {
@@ -15,14 +15,17 @@ public class Redevable {
     private String nom;
     private String prenom;
     private String cin;
-
+    @OneToMany
+    @JsonIgnore
+    List<Terrain> terrains;
     public Redevable() {
     }
 
-    public Redevable(String nom, String prenom, String cin) {
+    public Redevable(String nom, String prenom, String cin, List<Terrain> terrains) {
         this.nom = nom;
         this.prenom = prenom;
         this.cin = cin;
+        this.terrains = terrains;
     }
 
     public long getId() {
@@ -57,6 +60,14 @@ public class Redevable {
         this.cin = cin;
     }
 
+    public List<Terrain> getTerrains() {
+        return terrains;
+    }
+
+    public void setTerrains(List<Terrain> terrains) {
+        this.terrains = terrains;
+    }
+
     @Override
     public String toString() {
         return "Redevable{" +
@@ -64,6 +75,7 @@ public class Redevable {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", cin='" + cin + '\'' +
+                ", terrains=" + terrains +
                 '}';
     }
 }
