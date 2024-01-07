@@ -1,6 +1,5 @@
 package com.example.tnb.repository;
 
-import com.example.tnb.entity.Redevable;
 import com.example.tnb.entity.Terrain;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,4 +10,5 @@ import java.util.List;
 public interface TerrainRepository extends JpaRepository<Terrain, Integer> {
     Terrain findById(long id);
     List<Terrain> findByRedevableCin(String cin);
+
 }

@@ -1,4 +1,4 @@
-package com.example.tnb.controller;
+package com.example.tnb.ws;
 
 import com.example.tnb.entity.Taxe;
 import com.example.tnb.service.TaxeService;
@@ -25,6 +25,5 @@ public class TaxeController {
     public void saveTaxe(@RequestBody Taxe t){
         ts.save(t);
     }
-
 
 }

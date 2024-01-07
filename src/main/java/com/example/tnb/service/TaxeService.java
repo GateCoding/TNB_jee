@@ -1,34 +1,30 @@
 package com.example.tnb.service;
 
-import com.example.tnb.dao.IDao;
+import com.example.tnb.entity.Taxe;
 import com.example.tnb.entity.*;
-import com.example.tnb.repository.RedevableRepository;
 import com.example.tnb.repository.TaxeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
-public class TaxeService implements IDao<Taxe> {
+public class TaxeService {
     @Autowired
     private TaxeRepository tr;
+
     @Autowired
-    private RedevableService rs;
+    private RedevableService redevableServices;
     @Autowired
-    private TerrainService ts;
+    private TerrainService terrainServices;
     @Autowired
     private TauxService tauxService;
-
     @Autowired
-    private CategorieService cs;
+    private CategorieService categorieServices;
 
-    @Override
     public Taxe save(Taxe o) {
-        Redevable redevable = rs.findByCin(o.getRedevable().getCin());
-        Terrain terrain =  ts.findById(o.getTerrain().getId());
-        Categorie categorie = cs.findById(o.getCategorie().getId());
+        Redevable redevable = redevableServices.findByCin(o.getRedevable().getCin());
+        Terrain terrain =  terrainServices.findById(o.getTerrain().getId());
+        Categorie categorie = categorieServices.findById(o.getCategorie().getId());
         Taux taux = tauxService.findById(o.getTaux().getId());
 
         if (redevable ==null || terrain==null){
@@ -50,22 +46,19 @@ public class TaxeService implements IDao<Taxe> {
         return tr.save(o);
     }
 
-    @Override
     public void update(Taxe o) {
         tr.save(o);
     }
 
-    @Override
     public void delete(Taxe id) {
         tr.delete(id);
     }
 
-    @Override
+
     public Taxe findById(long id) {
         return tr.findById(id);
     }
 
-    @Override
     public List<Taxe> findAll() {
         return tr.findAll();
     }

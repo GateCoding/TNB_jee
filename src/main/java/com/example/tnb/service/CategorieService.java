@@ -1,6 +1,5 @@
 package com.example.tnb.service;
 
-import com.example.tnb.dao.IDao;
 import com.example.tnb.entity.Categorie;
 import com.example.tnb.repository.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,33 +8,28 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategorieService implements IDao<Categorie> {
+public class CategorieService {
 
     @Autowired
-    private CategorieRepository tr;
+    private CategorieRepository cr;
 
-    @Override
     public Categorie save(Categorie o) {
-        return tr.save(o);
+        return cr.save(o);
     }
 
-    @Override
     public void update(Categorie o) {
-        tr.save(o);
+        cr.save(o);
     }
 
-    @Override
     public void delete(Categorie id) {
-        tr.delete(id);
+        cr.delete(id);
     }
 
-    @Override
     public Categorie findById(long id) {
-        return tr.findById(id);
+        return cr.findById(id);
     }
 
-    @Override
     public List<Categorie> findAll() {
-        return tr.findAll();
+        return cr.findAll();
     }
 }
