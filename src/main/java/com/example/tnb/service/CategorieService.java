@@ -17,6 +17,7 @@ public class CategorieService {
         return cr.save(o);
     }
 
+
     public void update(Categorie o) {
         cr.save(o);
     }

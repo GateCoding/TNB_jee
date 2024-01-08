@@ -21,6 +21,13 @@ public class Redevable {
     public Redevable() {
     }
 
+    public Redevable( String nom, String prenom, String cin) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
+    }
+
     public Redevable(String nom, String prenom, String cin, List<Terrain> terrains) {
         this.nom = nom;
         this.prenom = prenom;
