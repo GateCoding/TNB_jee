@@ -2,6 +2,7 @@ package emsi.cg.terrain.ws;
 
 import emsi.cg.terrain.entity.Terrain;
 //import emsi.cg.terrain.service.RedevableService;
+import emsi.cg.terrain.service.RedevableMS;
 import emsi.cg.terrain.service.TerrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class TerrainController {
     @Autowired
     TerrainService ts;
 //    @Autowired
-//    RedevableService rs;
+//    RedevableMS rs;
 
     @GetMapping("/terrain")
     public List<Terrain> getAllTerrain(){

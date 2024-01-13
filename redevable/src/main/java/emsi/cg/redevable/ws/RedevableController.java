@@ -1,7 +1,7 @@
 package emsi.cg.redevable.ws;
 
-import com.example.tnb.entity.Redevable;
-import com.example.tnb.service.RedevableService;
+import emsi.cg.redevable.entity.Redevable;
+import emsi.cg.redevable.service.RedevableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +21,11 @@ public class RedevableController {
     @GetMapping("/redevables")
     public List<Redevable> getAllRedevables(){
         return rc.findAll();
+    }
+
+    @GetMapping("/redevable/{cin}")
+    public Redevable getRedevableByCin(@PathVariable("cin") String cin) {
+        return this.rc.findByCin(cin);
     }
 
 }

@@ -15,21 +15,16 @@ import java.util.List;
 @FeignClient(name="SERVICE-TERRAIN")
 public interface TerrainMS {
 
-
     @GetMapping(path = "/api/categorie/find/{id}")
     Categorie categorieById (@PathVariable("id") Long id);
 
     @GetMapping(path = "/api/taux/find/{id}")
     Taux tauxById (@PathVariable("id") Long id);
 
-
     @GetMapping(path = "/api/terrain/find/{id}")
     Terrain terrainById (@PathVariable("id") Long id);
 
-
-
-    @GetMapping("/terrain/redevable")
+    @GetMapping(path ="/terrain/redevable")
     List<Terrain> findByRedevableCin(String cin);
-
 
 }

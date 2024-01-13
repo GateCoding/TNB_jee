@@ -15,8 +15,8 @@ public class TaxeService {
     @Autowired
     private TaxeRepository tr;
 
-//    @Autowired
-//    private RedevableService redevableServices;
+    @Autowired
+    private RedevableMS redevableServices;
     @Autowired
     private TerrainService terrainServices;
     @Autowired
