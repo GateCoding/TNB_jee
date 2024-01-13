@@ -1,12 +1,15 @@
 package emsi.cg.redevable.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
-
+import lombok.*;
 import java.util.List;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Redevable {
 
     @Id
@@ -17,12 +20,9 @@ public class Redevable {
     private String prenom;
     private String cin;
 
-//    @JsonIgnore
-//    @Transient
-//    List<Terrain> terrains;
-    public Redevable() {
-    }
-
+    @Transient
+    @OneToMany
+    List<Terrain> terrains;
 
     @Override
     public String toString() {
@@ -31,7 +31,7 @@ public class Redevable {
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", cin='" + cin + '\'' +
-              //  ", terrains=" + terrains +
+                ", terrains=" + terrains +
                 '}';
     }
 }
