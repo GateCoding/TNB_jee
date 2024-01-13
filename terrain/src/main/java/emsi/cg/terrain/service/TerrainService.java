@@ -4,6 +4,7 @@ import emsi.cg.terrain.entity.Terrain;
 import emsi.cg.terrain.repository.TerrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -12,6 +13,8 @@ public class TerrainService {
 
     @Autowired
     private TerrainRepository tr;
+    @Autowired
+    RedevableMS redevableMS;
 
     public Terrain save(Terrain o) {
         return tr.save(o);
@@ -34,6 +37,6 @@ public class TerrainService {
     }
 
     public List<Terrain> findByRedevableCin(String cin){
-        return tr.findByRedevableCin(cin);
+        return tr.findByRedevableid(redevableMS.getRedevableByCin(cin).getId());
     }
 }
