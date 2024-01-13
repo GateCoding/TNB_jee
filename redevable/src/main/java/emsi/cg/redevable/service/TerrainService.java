@@ -1,4 +1,4 @@
-package emsi.cg.terrain.service;
+package emsi.cg.redevable.service;
 
 import com.example.tnb.entity.Terrain;
 import com.example.tnb.repository.TerrainRepository;

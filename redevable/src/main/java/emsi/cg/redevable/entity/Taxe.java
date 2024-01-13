@@ -1,35 +1,33 @@
 package emsi.cg.redevable.entity;
 
-
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-
-
-@Transactional
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+    @NoArgsConstructor
 public class Taxe {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private double tauxTerrain;
-    private double surface;
-    private int annee;
-    private double montantPaye;
 
-    @ManyToOne
-    @JoinColumn(name = "terrain_id")
+    private long id;
+
+    private boolean pay;
+
+
+    private Taux taux;
+
+
     private Terrain terrain;
 
-    // Getters and setters
+    private Categorie categorie;
+
+    private Redevable redevable;
+
+
+
+
+    private Double cost;
+
+
 }
-
-

@@ -1,4 +1,4 @@
-package emsi.cg.terrain.ws;
+package emsi.cg.redevable.ws;
 
 import com.example.tnb.entity.Taux;
 import com.example.tnb.service.TauxService;

@@ -1,6 +1,6 @@
-package emsi.cg.terrain.repository;
+package emsi.cg.redevable.repository;
 
-import com.example.tnb.entity.Taux;
+import emsi.cg.redevable.entity.Taux;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

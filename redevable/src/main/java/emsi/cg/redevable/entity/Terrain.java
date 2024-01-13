@@ -1,36 +1,38 @@
 package emsi.cg.redevable.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
-@Transactional
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Terrain {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long terrainID;
+
+    private long id;
     private double surface;
 
-    @ManyToOne
-    @JoinColumn(name = "categorie_id")
+
+    private Redevable redevable;
+
     private Categorie categorie;
 
-    @ManyToOne
-    @JoinColumn(name = "proprietaire_cin")
-    private Redevable proprietaire;
 
-    @OneToMany(mappedBy = "terrain", cascade = CascadeType.ALL)
-    private List<Taxe> taxesTNB;
 
-    // Getters and setters
+
+
+    @Override
+    public String toString() {
+        return "Terrain{" +
+                "id=" + id +
+                ", surface=" + surface +
+                ", redevable=" + redevable +
+                ", categorie=" + categorie +
+            //    ", taxes=" + taxes +
+                '}';
+    }
 }

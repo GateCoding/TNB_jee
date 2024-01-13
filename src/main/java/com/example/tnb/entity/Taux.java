@@ -2,15 +2,17 @@ package com.example.tnb.entity;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Taux {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private double prix;
     private int annee;
 
     @ManyToOne
     @JoinColumn(name = "categorie_id")
-    @Transient
     private Categorie categorie;
 
     public Taux() {

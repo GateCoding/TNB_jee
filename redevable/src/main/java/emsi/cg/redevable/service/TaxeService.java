@@ -1,7 +1,7 @@
-package emsi.cg.terrain.service;
+package emsi.cg.redevable.service;
 
-import com.example.tnb.entity.Taxe;
-import com.example.tnb.repository.TaxeRepository;
+import emsi.cg.redevable.entity.Taxe;
+import emsi.cg.redevable.repository.TaxeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -6,24 +6,24 @@ import jakarta.persistence.*;
 import java.util.List;
 
 
+@Entity
 public class Terrain {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private double surface;
 
     @ManyToOne
     @JoinColumn(name = "redevable_id")
-    @Transient
     private Redevable redevable;
 
     @ManyToOne
     @JoinColumn(name = "categorie_id")
-    @Transient
     private Categorie categorie;
 
     @OneToMany(mappedBy = "terrain", fetch = FetchType.EAGER)
     @JsonIgnore
-    @Transient
     private List<Taxe> taxes;
 
     public Terrain() {

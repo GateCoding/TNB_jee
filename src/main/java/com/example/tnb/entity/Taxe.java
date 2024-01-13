@@ -2,26 +2,25 @@ package com.example.tnb.entity;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Taxe {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private boolean pay;
 
     @ManyToOne
     @JoinColumn(name = "taux_id")
-    @Transient
     private Taux taux;
 
     @ManyToOne
     @JoinColumn(name = "terrain_id")
-    @Transient
     private Terrain terrain;
     @ManyToOne
-    @Transient
     private Categorie categorie;
     @ManyToOne
-    @Transient
     private Redevable redevable;
 
 
