@@ -22,6 +22,7 @@ public class Terrain {
     @JoinColumn(name = "redevable_id")
     @Transient
     private Redevable redevable;
+    private long redevableid;
 
     @ManyToOne
     @JoinColumn(name = "categorie_id")

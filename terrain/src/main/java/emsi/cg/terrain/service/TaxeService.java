@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class TaxeService {
+
     @Autowired
     private TaxeRepository tr;
     @Autowired
@@ -21,6 +22,7 @@ public class TaxeService {
     private CategorieService categorieServices;
 
     public Taxe save(Taxe o) {
+
         Redevable redevable = redevableServices.getRedevableByCin(o.getRedevable().getCin());
         Terrain terrain =  terrainServices.findById(o.getTerrain().getId());
         Categorie categorie = categorieServices.findById(o.getCategorie().getId());

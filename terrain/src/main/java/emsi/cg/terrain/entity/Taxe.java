@@ -10,6 +10,9 @@ import lombok.*;
 @Setter
 @Entity
 public class Taxe {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private boolean pay;
     private double cost;
