@@ -16,14 +16,13 @@ public class Terrain {
     private long id;
     private double surface;
 
-
+    @ManyToOne
+    @Transient
     private Redevable redevable;
 
+    @ManyToOne
+    @Transient
     private Categorie categorie;
-
-
-
-
 
     @Override
     public String toString() {
