@@ -20,13 +20,18 @@ public class Redevable implements Serializable {
 
     private String nom;
     private String prenom;
+
+    @Column(unique = true, nullable = false)
     private String cin;
 
     @Transient
     @OneToMany
     List<Terrain> terrains;
 
-    public Redevable(String nom , String prenom, String cin) {
+    public Redevable(String nom, String prenom, String cin) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.cin = cin;
     }
 
     @Override

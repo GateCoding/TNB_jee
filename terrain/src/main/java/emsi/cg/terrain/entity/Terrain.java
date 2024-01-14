@@ -19,10 +19,10 @@ public class Terrain {
     private double surface;
 
     @ManyToOne
-    @JoinColumn(name = "redevable_id")
+    @JoinColumn(name = "redevable_cin")
     @Transient
     private Redevable redevable;
-    private long redevableid;
+    private String redevablecin;
 
     @ManyToOne
     @JoinColumn(name = "categorie_id")
@@ -30,6 +30,12 @@ public class Terrain {
 
     @OneToMany(mappedBy = "terrain", fetch = FetchType.EAGER)
     private List<Taxe> taxes;
+
+    public Terrain(double surface, String redevableid, Categorie categorie) {
+        this.surface = surface;
+        this.redevablecin = redevableid;
+        this.categorie = categorie;
+    }
 
     @Override
     public String toString() {

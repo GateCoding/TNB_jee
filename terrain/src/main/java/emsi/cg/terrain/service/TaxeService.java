@@ -23,7 +23,7 @@ public class TaxeService {
 
     public Taxe save(Taxe o) {
 
-        Redevable redevable = redevableServices.getRedevableByCin(o.getRedevable().getCin());
+        Redevable redevable = redevableServices.getRedevableByCin(o.getRedevablecin());
         Terrain terrain =  terrainServices.findById(o.getTerrain().getId());
         Categorie categorie = categorieServices.findById(o.getCategorie().getId());
         Taux taux = tauxService.findById(o.getTaux().getId());

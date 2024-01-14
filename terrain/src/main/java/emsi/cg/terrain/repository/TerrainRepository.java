@@ -11,6 +11,6 @@ import java.util.List;
 public interface TerrainRepository extends JpaRepository<Terrain, Integer> {
     Terrain findById(long id);
 //    List<Terrain> findByRedevableCin(String cin);
-    List<Terrain> findByRedevableid(long redevableid);
+    List<Terrain> findByRedevablecin(String redevablecin);
 
 }

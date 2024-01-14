@@ -28,8 +28,8 @@ public class TerrainController {
         ts.save(t);
     }
 
-    @GetMapping("/terrain/redevable")
-    public List<Terrain> getTerrainByRevendevale(@RequestParam("cin") String cin){
+    @GetMapping("/terrain/redevable/{cin}")
+    public List<Terrain> getTerrainByRevendevale(@PathVariable("cin") String cin){
         return ts.findByRedevableCin(cin);
     }
 }
