@@ -2,6 +2,8 @@ package emsi.cg.terrain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -9,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Redevable {
+public class Redevable implements Serializable {
 
     private long id;
     private String nom;

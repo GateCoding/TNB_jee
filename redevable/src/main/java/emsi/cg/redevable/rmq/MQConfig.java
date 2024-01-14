@@ -1,4 +1,4 @@
-package emsi.cg.terrain.rmq;
+package emsi.cg.redevable.rmq;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

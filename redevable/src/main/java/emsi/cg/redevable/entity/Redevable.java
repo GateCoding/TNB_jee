@@ -2,6 +2,8 @@ package emsi.cg.redevable.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -10,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Redevable {
+public class Redevable implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +25,9 @@ public class Redevable {
     @Transient
     @OneToMany
     List<Terrain> terrains;
+
+    public Redevable(String nom , String prenom, String cin) {
+    }
 
     @Override
     public String toString() {
