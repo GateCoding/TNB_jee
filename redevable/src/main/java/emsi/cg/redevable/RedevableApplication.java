@@ -14,7 +14,7 @@ public class RedevableApplication implements CommandLineRunner {
 //    @Autowired
 //    CategorieService categorieService ;
     @Autowired
-RedevableService redevableService;
+    RedevableService redevableService;
     public static void main(String[] args) {
         SpringApplication.run(RedevableApplication.class, args);
     }
@@ -22,13 +22,13 @@ RedevableService redevableService;
     public void run(String... args) throws Exception {
      //   categorieService.save(new Categorie("test"));
 
-        Redevable r = new Redevable("E4546", "client1","test1");
-        Redevable r1 = new Redevable("N56475", "client2","test2");
-        Redevable r2 = new Redevable("E785554", "client3","test3");
+        Redevable redevable1 = new Redevable("John", "Aimrane", "EE3456789");
+        Redevable redevable2 = new Redevable("Jane", "Meryem", "JR9654321");
+        Redevable redevable3 = new Redevable("Bob", "Yahya", "NL7789123");
 
-        redevableService.save(r);
-        redevableService.save(r1);
-        redevableService.save(r2);
+        redevableService.save(redevable1);
+        redevableService.save(redevable2);
+        redevableService.save(redevable3);
 
     }
 //    public static void main(String[] args) {

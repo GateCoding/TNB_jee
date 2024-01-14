@@ -31,15 +31,15 @@ public class Taxe {
     @ManyToOne
     @Transient
     private Redevable redevable;
+    private String redevablecin;
 
-
-    public Taxe(boolean pay, Taux taux, Terrain terrain, Categorie categorie, Redevable redevable, Double cost) {
+    public Taxe(boolean pay, double cost, Taux taux, Terrain terrain, Categorie categorie, String redevablecin) {
         this.pay = pay;
+        this.cost = cost;
         this.taux = taux;
         this.terrain = terrain;
         this.categorie = categorie;
-        this.redevable = redevable;
-        this.cost = cost;
+        this.redevablecin = redevablecin;
     }
 
     @Override

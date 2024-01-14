@@ -24,7 +24,7 @@ public interface TerrainMS {
     @GetMapping(path = "/api/terrain/find/{id}")
     Terrain terrainById (@PathVariable("id") Long id);
 
-    @GetMapping(path ="/terrain/redevable")
-    List<Terrain> findByRedevableCin(String cin);
+    @GetMapping(path ="/terrain/redevable/{cin}")
+    List<Terrain> findByRedevableCin(@PathVariable("cin") String cin);
 
 }

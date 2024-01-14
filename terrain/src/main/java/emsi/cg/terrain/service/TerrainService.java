@@ -37,6 +37,6 @@ public class TerrainService {
     }
 
     public List<Terrain> findByRedevableCin(String cin){
-        return tr.findByRedevableid(redevableMS.getRedevableByCin(cin).getId());
+        return tr.findByRedevablecin(redevableMS.getRedevableByCin(cin).getCin());
     }
 }
