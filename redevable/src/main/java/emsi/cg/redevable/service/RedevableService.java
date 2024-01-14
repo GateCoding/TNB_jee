@@ -14,9 +14,7 @@ public class RedevableService {
     @Autowired
     TerrainMS terrainMS;
     public Redevable save(Redevable o) {
-
-        System.out.println("test : "+rr.save(o));
-        return null;
+        return rr.save(o);
     }
 
     public void update(Redevable o) {

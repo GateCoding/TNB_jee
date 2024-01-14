@@ -7,23 +7,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/redevable")
 public class RedevableController {
     @Autowired
     RedevableService rc;
 
-    @PostMapping("/redevable/save")
+    @PostMapping("/save")
     public void saveRedevable(@RequestBody Redevable redevable){
         rc.save(redevable);
     }
 
-    @GetMapping("/redevables")
+    @PostMapping("/delete/{id}")
+    public void saveRedevable(@RequestBody Redevable redevable){
+        rc.delete(redevable);
+    }
+
+    @GetMapping("/all")
     public List<Redevable> getAllRedevables(){
         return rc.findAll();
     }
 
-    @GetMapping("/redevable/{cin}")
+    @GetMapping("/find/{cin}")
     public Redevable getRedevableByCin(@PathVariable("cin") String cin) {
         return this.rc.findByCin(cin);
     }
