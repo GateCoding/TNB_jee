@@ -24,8 +24,8 @@ public class RedevableService {
         rr.save(o);
     }
 
-    public void delete(Redevable o) {
-        rr.delete(o);
+    public void delete(long id) {
+        rr.delete(rr.findById(id));
     }
 
     public Redevable findByCin(String cin) {
@@ -38,6 +38,10 @@ public class RedevableService {
 
     public List<Terrain> findAllTerrain(Redevable redevable){
         return terrainMS.findByRedevableCin(redevable.getCin());
+    }
+
+    public Redevable findById(long id){
+        return rr.findById(id);
     }
 
 }

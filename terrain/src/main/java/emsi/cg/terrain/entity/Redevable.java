@@ -16,8 +16,6 @@ public class Redevable implements Serializable {
     private long id;
     private String nom;
     private String prenom;
-
-
     private String cin;
 
     @Transient
