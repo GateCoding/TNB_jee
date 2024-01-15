@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 @RestController
 @RequestMapping("api/redevable")
 public class RedevableController {
@@ -21,12 +21,12 @@ public class RedevableController {
         rc.save(redevable);
     }
 
-    @PostMapping("/delete/{id}")
-    public void deleteRedevable(@RequestBody Redevable redevable){
-        rc.delete(redevable);
+    @DeleteMapping("/delete/{id}")
+    public void deleteRedevable(@PathVariable("id") long id){
+        rc.delete(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void updateRedevable(@RequestBody Redevable redevable){rc.update(redevable);}
 
     @GetMapping("/all")
@@ -39,9 +39,14 @@ public class RedevableController {
         return rc.findAllTerrain(redevable);
     }
 
-    @GetMapping("/find/{cin}")
+    @GetMapping("/findByCin/{cin}")
     public Redevable getRedevableByCin(@PathVariable("cin") String cin) {
         return this.rc.findByCin(cin);
+    }
+
+    @GetMapping("/findById/{id}")
+    public Redevable getRedevableById(@PathVariable("id") long id) {
+        return this.rc.findById(id);
     }
 
 }

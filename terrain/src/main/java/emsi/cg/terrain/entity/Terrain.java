@@ -1,5 +1,7 @@
 package emsi.cg.terrain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,14 +30,15 @@ public class Terrain {
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
 
-    @OneToMany(mappedBy = "terrain", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "terrain", cascade = CascadeType.ALL)
     private List<Taxe> taxes;
 
-    public Terrain(double surface, String redevableid, Categorie categorie) {
-        this.surface = surface;
-        this.redevablecin = redevableid;
-        this.categorie = categorie;
-    }
+//    public Terrain(double surface, String redevableid, Categorie categorie) {
+//        this.surface = surface;
+//        this.redevablecin = redevableid;
+//        this.categorie = categorie;
+//    }
 
     @Override
     public String toString() {

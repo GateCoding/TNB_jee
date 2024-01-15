@@ -13,7 +13,7 @@ public class TaxeService {
     @Autowired
     private TaxeRepository tr;
     @Autowired
-    private RedevableMS redevableServices;
+    private RedevableMS redevableMS;
     @Autowired
     private TerrainService terrainServices;
     @Autowired
@@ -23,7 +23,7 @@ public class TaxeService {
 
     public Taxe save(Taxe o) {
 
-        Redevable redevable = redevableServices.getRedevableByCin(o.getRedevablecin());
+        Redevable redevable = redevableMS.getRedevableByCin(o.getRedevablecin());
         Terrain terrain =  terrainServices.findById(o.getTerrain().getId());
         Categorie categorie = categorieServices.findById(o.getCategorie().getId());
         Taux taux = tauxService.findById(o.getTaux().getId());
@@ -61,6 +61,11 @@ public class TaxeService {
 
     public List<Taxe> findAll() {
         return tr.findAll();
+    }
+
+    public List<Taxe> findByTaxeCin(String cin){
+//        System.out.println("================>  "+redevableMS.getRedevableByCin(cin).getCin());
+        return tr.findByRedevablecin(redevableMS.getRedevableByCin(cin).getCin());
     }
 
 }
