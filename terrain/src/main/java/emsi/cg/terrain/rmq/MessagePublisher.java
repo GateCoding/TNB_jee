@@ -1,8 +1,7 @@
-package emsi.cg.redevable.rmq;
+package emsi.cg.terrain.rmq;
 
-import emsi.cg.redevable.entity.Redevable;
-import emsi.cg.redevable.service.RedevableService;
-import emsi.cg.redevable.service.TerrainMS;
+
+import emsi.cg.terrain.service.TaxeService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +15,12 @@ public class MessagePublisher {
     @Autowired
     private RabbitTemplate template;
 
-    @Autowired
-    private RedevableService redevableService;
-
-    @Autowired
-    private TerrainMS terrainMS;
+@Autowired
+private TaxeService taxeService;
     @PostMapping("/publish")
-    public ResponseEntity<String> demandepublish(@RequestBody DemandePaiementProducer request) {
-        template.convertAndSend(MQConfig.EXCHANGE, MQConfig.ROUTING_KEY, request);
-        return ResponseEntity.ok("User sent: " + request.toString());
+        public ResponseEntity<String> responsepublish(@RequestBody DemandePaiementProducer demande) {
+
+            template.convertAndSend(MQConfig.EXCHANGE, MQConfig.ROUTING_KEY_RESULTAT, demande);
+        return ResponseEntity.ok("Response sent: " + demande+ "Status sent: " + demande);
     }
 }

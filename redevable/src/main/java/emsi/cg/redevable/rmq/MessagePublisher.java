@@ -21,24 +21,8 @@ public class MessagePublisher {
 
     @Autowired
     private TerrainMS terrainMS;
-    @PostMapping("/demandecreate")
-    public DemandePaiementProducer saveDemande(@RequestBody DemandePaiementProducer request) {
-        // Process the request and return the modified object
-        request.setRedevable(redevableService.findByCin(request.getRedevable().getCin()));
-        request.setTaux(terrainMS.tauxById(request.getTaux().getId()));
-        request.setTerrain(terrainMS.terrainById(request.getTerrain().getId()));
-        return request;
-    }
-
-
     @PostMapping("/publish")
-    public ResponseEntity<String> demandepublish( @RequestBody DemandePaiementProducer request) {
-        request = new DemandePaiementProducer(
-                (terrainMS.terrainById(request.getTerrain().getId()))
-                ,redevableService.findByCin(request.getRedevable().getCin())
-                ,terrainMS.tauxById(request.getTaux().getId()));
-
-        // Send the serialized object to the message broker
+    public ResponseEntity<String> demandepublish(@RequestBody DemandePaiementProducer request) {
         template.convertAndSend(MQConfig.EXCHANGE, MQConfig.ROUTING_KEY, request);
         return ResponseEntity.ok("User sent: " + request.toString());
     }

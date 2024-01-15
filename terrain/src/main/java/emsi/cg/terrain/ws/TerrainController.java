@@ -2,9 +2,11 @@ package emsi.cg.terrain.ws;
 
 import emsi.cg.terrain.entity.Terrain;
 //import emsi.cg.terrain.service.RedevableService;
+import emsi.cg.terrain.rmq.DemandePaiementProducer;
 import emsi.cg.terrain.service.RedevableMS;
 import emsi.cg.terrain.service.TerrainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,4 +38,5 @@ public class TerrainController {
     public List<Terrain> getTerrainByRevendevale(@PathVariable("cin") String cin){
         return ts.findByRedevableCin(cin);
     }
+
 }

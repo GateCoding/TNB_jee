@@ -15,36 +15,52 @@ public class MQConfig {
     public static final String QUEUE = "2ite_micro_message_queue";
     public static final String EXCHANGE = "2ite_micro_message_exchange";
     public static final String ROUTING_KEY = "message_routingKey";
+    public static final String QUEUE_RESULTAT = "2ite_micro_message_queue_resultat";
+    public static final String ROUTING_KEY_RESULTAT = "message_routingKey_resultat";
 
     @Bean
-    public Queue queue() {
-        return  new Queue(QUEUE);
+    public Queue demandeQueue() {
+        return new Queue(QUEUE);
     }
 
     @Bean
-    public TopicExchange exchange() {
+    public Queue reponseQueue() {
+        return new Queue(QUEUE_RESULTAT);
+    }
+
+    @Bean
+    public TopicExchange redevableExchange() {
         return new TopicExchange(EXCHANGE);
     }
 
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
+    public Binding demandeBinding(Queue demandeQueue, TopicExchange redevableExchange) {
         return BindingBuilder
-                .bind(queue)
-                .to(exchange)
+                .bind(demandeQueue)
+                .to(redevableExchange)
                 .with(ROUTING_KEY);
     }
 
     @Bean
-    public MessageConverter messageConverter() {
-        return  new Jackson2JsonMessageConverter();
+    public Binding reponseBinding(Queue reponseQueue, TopicExchange redevableExchange) {
+        return BindingBuilder
+                .bind(reponseQueue)
+                .to(redevableExchange)
+                .with(ROUTING_KEY_RESULTAT);
     }
 
     @Bean
-    public AmqpTemplate template(ConnectionFactory connectionFactory) {
-        RabbitTemplate template = new RabbitTemplate(connectionFactory);
-        template.setMessageConverter(messageConverter());
-        return  template;
+    public MessageConverter redevableMessageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
+
+    @Bean
+    public AmqpTemplate redevableTemplate(ConnectionFactory connectionFactory) {
+        RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setMessageConverter(redevableMessageConverter());
+        return template;
+    }
+
 
 
 }

@@ -2,10 +2,15 @@ package emsi.cg.terrain.service;
 
 import emsi.cg.terrain.entity.*;
 import emsi.cg.terrain.repository.TaxeRepository;
+import emsi.cg.terrain.rmq.DemandePaiementProducer;
+import emsi.cg.terrain.rmq.MQConfig;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaxeService {
@@ -14,12 +19,14 @@ public class TaxeService {
     private TaxeRepository tr;
     @Autowired
     private RedevableMS redevableServices;
-    @Autowired
+   @Autowired
     private TerrainService terrainServices;
     @Autowired
     private TauxService tauxService;
     @Autowired
     private CategorieService categorieServices;
+    @Autowired
+    RabbitTemplate template;
 
     public Taxe save(Taxe o) {
 
@@ -62,5 +69,51 @@ public class TaxeService {
     public List<Taxe> findAll() {
         return tr.findAll();
     }
+
+
+
+
+
+
+    public boolean demandeExists(long demandeTaxe) {
+        List<Taxe> taxes = tr.findAll();
+
+        for (Taxe taxe : taxes) {
+            if (taxe.getId()==demandeTaxe) {
+                // La taxe existe déjà dans la liste
+                return true;
+            }
+        }
+
+        // La taxe n'existe pas dans la liste
+        return false;
+    }
+
+    public String traiterDemandePaiement(DemandePaiementProducer demande) {
+        String reponse = demande.getReponseDemande();
+
+             // Vérifier si la demande.getTaxe existe déjà
+        if (demandeExists(demande.getTaxe())) {
+
+            demande.setReponseDemande("La demande existe déjà");
+            return reponse;
+        }
+
+        Taxe taxeUpdate = tr.findById(demande.getTaux());
+
+                taxeUpdate.setPay(true);
+                tr.save(taxeUpdate);
+
+      //  reponse.setTraitementReussi(true);
+        demande.setReponseDemande("Traitement réussi");
+
+        return reponse;
+
+    }
+
+
+
+
+
 
 }
