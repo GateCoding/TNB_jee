@@ -20,6 +20,8 @@ public class TaxeService {
     @Autowired
     private RedevableMS redevableServices;
    @Autowired
+
+
     private TerrainService terrainServices;
     @Autowired
     private TauxService tauxService;
@@ -75,6 +77,7 @@ public class TaxeService {
 
 
 
+
     public boolean demandeExists(long demandeTaxe) {
         List<Taxe> taxes = tr.findAll();
 
@@ -114,6 +117,13 @@ public class TaxeService {
 
 
 
+
+
+
+    public List<Taxe> findByTaxeCin(String cin){
+
+        return tr.findByRedevablecin(redevableServices.getRedevableByCin(cin).getCin());
+    }
 
 
 }

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="SERVICE-REDEVABLE")
 public interface RedevableMS {
 
-    @GetMapping(path ="/api/redevable/find/{cin}")
+    @GetMapping(path ="/api/redevable/findByCin/{cin}")
     Redevable getRedevableByCin(@PathVariable("cin") String cin);
 
 }

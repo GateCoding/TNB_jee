@@ -1,5 +1,7 @@
 package emsi.cg.terrain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +23,7 @@ public class Taxe {
     @JoinColumn(name = "taux_id")
     private Taux taux;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "terrain_id")
     private Terrain terrain;
@@ -33,14 +36,14 @@ public class Taxe {
     private Redevable redevable;
     private String redevablecin;
 
-    public Taxe(boolean pay, double cost, Taux taux, Terrain terrain, Categorie categorie, String redevablecin) {
-        this.pay = pay;
-        this.cost = cost;
-        this.taux = taux;
-        this.terrain = terrain;
-        this.categorie = categorie;
-        this.redevablecin = redevablecin;
-    }
+//    public Taxe(boolean pay, double cost, Taux taux, Terrain terrain, Categorie categorie, String redevablecin) {
+//        this.pay = pay;
+//        this.cost = cost;
+//        this.taux = taux;
+//        this.terrain = terrain;
+//        this.categorie = categorie;
+//        this.redevablecin = redevablecin;
+//    }
 
     @Override
     public String toString() {

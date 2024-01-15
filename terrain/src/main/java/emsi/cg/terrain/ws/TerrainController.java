@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins="http://localhost:4200", allowedHeaders="*")
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/terrain")
 public class TerrainController {
 
     @Autowired
@@ -20,15 +21,16 @@ public class TerrainController {
 //    @Autowired
 //    RedevableMS rs;
 
-    @GetMapping("/terrain")
+    @GetMapping("/all")
     public List<Terrain> getAllTerrain(){
         return ts.findAll();
     }
 
-    @PostMapping("/terrain/save")
+    @PostMapping("/save")
     public void saveTerrain(@RequestBody Terrain t){
         ts.save(t);
     }
+
 
     @GetMapping(path = "/terrain/find/{id}")
     Terrain terrainById (@PathVariable("id") Long id){
@@ -38,5 +40,24 @@ public class TerrainController {
     public List<Terrain> getTerrainByRevendevale(@PathVariable("cin") String cin){
         return ts.findByRedevableCin(cin);
     }
+
+
+    @GetMapping("/redevable/{cin}")
+    public List<Terrain> getTerrainByRedevable(@PathVariable("cin") String cin){
+        return ts.findByRedevableCin(cin);
+    }
+
+    @GetMapping("/find/{id}")
+    public Terrain getTerrainById(@PathVariable("id") long id){
+        return ts.findById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteTerrain(@PathVariable("id") long id){
+        ts.delete(ts.findById(id));
+    }
+
+    @PutMapping("/update")
+    public void updateTerrain(@RequestBody Terrain t){ts.update(t);}
 
 }

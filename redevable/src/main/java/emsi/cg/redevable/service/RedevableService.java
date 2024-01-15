@@ -51,8 +51,8 @@ public class RedevableService {
         rr.save(o);
     }
 
-    public void delete(Redevable o) {
-        rr.delete(o);
+    public void delete(long id) {
+        rr.delete(rr.findById(id));
     }
 
     public Redevable findByCin(String cin) {
@@ -77,4 +77,10 @@ public class RedevableService {
         }
         // Vous pouvez également effectuer d'autres actions en fonction du résultat
     }
+
+    public Redevable findById(long id){
+        return rr.findById(id);
+    }
+
+
 }

@@ -12,5 +12,5 @@ public interface TaxeRepository extends JpaRepository<Taxe, Integer> {
     Taxe findById(long id);
     List<Taxe> findByTerrain(Terrain t);
 
-
+    List<Taxe> findByRedevablecin(String redevablecin);
 }
