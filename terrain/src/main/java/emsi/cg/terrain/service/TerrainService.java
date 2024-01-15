@@ -1,7 +1,13 @@
 package emsi.cg.terrain.service;
 
+import emsi.cg.terrain.entity.Redevable;
+import emsi.cg.terrain.entity.Taxe;
 import emsi.cg.terrain.entity.Terrain;
 import emsi.cg.terrain.repository.TerrainRepository;
+import emsi.cg.terrain.rmq.DemandePaiementProducer;
+import emsi.cg.terrain.rmq.MQConfig;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,4 +45,8 @@ public class TerrainService {
     public List<Terrain> findByRedevableCin(String cin){
         return tr.findByRedevablecin(redevableMS.getRedevableByCin(cin).getCin());
     }
+
+
+
+
 }

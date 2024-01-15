@@ -2,10 +2,15 @@ package emsi.cg.terrain.service;
 
 import emsi.cg.terrain.entity.*;
 import emsi.cg.terrain.repository.TaxeRepository;
+import emsi.cg.terrain.rmq.DemandePaiementProducer;
+import emsi.cg.terrain.rmq.MQConfig;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaxeService {
@@ -13,17 +18,21 @@ public class TaxeService {
     @Autowired
     private TaxeRepository tr;
     @Autowired
-    private RedevableMS redevableMS;
-    @Autowired
+    private RedevableMS redevableServices;
+   @Autowired
+
+
     private TerrainService terrainServices;
     @Autowired
     private TauxService tauxService;
     @Autowired
     private CategorieService categorieServices;
+    @Autowired
+    RabbitTemplate template;
 
     public Taxe save(Taxe o) {
 
-        Redevable redevable = redevableMS.getRedevableByCin(o.getRedevablecin());
+        Redevable redevable = redevableServices.getRedevableByCin(o.getRedevablecin());
         Terrain terrain =  terrainServices.findById(o.getTerrain().getId());
         Categorie categorie = categorieServices.findById(o.getCategorie().getId());
         Taux taux = tauxService.findById(o.getTaux().getId());
@@ -63,9 +72,58 @@ public class TaxeService {
         return tr.findAll();
     }
 
-    public List<Taxe> findByTaxeCin(String cin){
-//        System.out.println("================>  "+redevableMS.getRedevableByCin(cin).getCin());
-        return tr.findByRedevablecin(redevableMS.getRedevableByCin(cin).getCin());
+
+
+
+
+
+
+    public boolean demandeExists(long demandeTaxe) {
+        List<Taxe> taxes = tr.findAll();
+
+        for (Taxe taxe : taxes) {
+            if (taxe.getId()==demandeTaxe) {
+                // La taxe existe déjà dans la liste
+                return true;
+            }
+        }
+
+        // La taxe n'existe pas dans la liste
+        return false;
     }
+
+    public String traiterDemandePaiement(DemandePaiementProducer demande) {
+        String reponse = demande.getReponseDemande();
+
+             // Vérifier si la demande.getTaxe existe déjà
+        if (demandeExists(demande.getTaxe())) {
+
+            demande.setReponseDemande("La demande existe déjà");
+            return reponse;
+        }
+
+        Taxe taxeUpdate = tr.findById(demande.getTaux());
+
+                taxeUpdate.setPay(true);
+                tr.save(taxeUpdate);
+
+      //  reponse.setTraitementReussi(true);
+        demande.setReponseDemande("Traitement réussi");
+
+        return reponse;
+
+    }
+
+
+
+
+
+
+
+    public List<Taxe> findByTaxeCin(String cin){
+
+        return tr.findByRedevablecin(redevableServices.getRedevableByCin(cin).getCin());
+    }
+
 
 }

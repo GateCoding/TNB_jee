@@ -2,9 +2,11 @@ package emsi.cg.terrain.ws;
 
 import emsi.cg.terrain.entity.Terrain;
 //import emsi.cg.terrain.service.RedevableService;
+import emsi.cg.terrain.rmq.DemandePaiementProducer;
 import emsi.cg.terrain.service.RedevableMS;
 import emsi.cg.terrain.service.TerrainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +30,17 @@ public class TerrainController {
     public void saveTerrain(@RequestBody Terrain t){
         ts.save(t);
     }
+
+
+    @GetMapping(path = "/terrain/find/{id}")
+    Terrain terrainById (@PathVariable("id") Long id){
+        return ts.findById(id);
+    }
+    @GetMapping("/terrain/redevable/{cin}")
+    public List<Terrain> getTerrainByRevendevale(@PathVariable("cin") String cin){
+        return ts.findByRedevableCin(cin);
+    }
+
 
     @GetMapping("/redevable/{cin}")
     public List<Terrain> getTerrainByRedevable(@PathVariable("cin") String cin){

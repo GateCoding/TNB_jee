@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Redevable implements Serializable {
+public class Redevable  {
 
     private long id;
     private String nom;

@@ -27,6 +27,24 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+<!--		<dependency>-->
+<!--		    <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--		    <artifactId>jackson-databind</artifactId>-->
+<!--		    <version>2.12.5</version> &lt;!&ndash; Use the latest version available &ndash;&gt;-->
+<!--		 </dependency>-->
+		<!-- Exclude a specific version of a conflicting Jackson library -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-annotations</artifactId>
+				</exclusion>
+				<!-- Add more exclusions if needed -->
+			</exclusions>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
