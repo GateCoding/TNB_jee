@@ -1,15 +1,25 @@
 package emsi.cg.redevable.rmq;
+import emsi.cg.redevable.entity.Redevable;
+import emsi.cg.redevable.entity.Taux;
+import emsi.cg.redevable.entity.Terrain;
+import lombok.*;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class DemandePaiementProducer {
+import java.io.Serializable;
+@RequiredArgsConstructor
 
-    @Autowired
-    private AmqpTemplate rabbitTemplate;
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+public class DemandePaiementProducer implements Serializable {
 
-//    public void sendDemandePaiement(DemandePaiement demandePaiement) {
-//        rabbitTemplate.convertAndSend("exchange.demandes", "demande.paiement", demandePaiement);
-//    }
+
+     Terrain terrain;
+     Redevable redevable;
+     Taux taux;
+
+
 }

@@ -1,5 +1,6 @@
 package emsi.cg.terrain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,7 @@ public class Terrain {
     private Categorie categorie;
 
     @OneToMany(mappedBy = "terrain", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Taxe> taxes;
 
     public Terrain(double surface, String redevableid, Categorie categorie) {

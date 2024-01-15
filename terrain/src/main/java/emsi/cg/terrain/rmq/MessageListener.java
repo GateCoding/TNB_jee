@@ -9,8 +9,9 @@ import org.springframework.stereotype.Component;
 public class MessageListener {
 
     @RabbitListener(queues = MQConfig.QUEUE)
-    public void listener(Redevable message) {
+    public void listener(DemandePaiementProducer message) {
+
         System.out.println("ttttt");
-        System.out.println(message);
+        System.out.println("hheloo  "+message);
     }
 }

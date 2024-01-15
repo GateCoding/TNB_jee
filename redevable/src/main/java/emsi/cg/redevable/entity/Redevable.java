@@ -1,5 +1,6 @@
 package emsi.cg.redevable.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Redevable implements Serializable {
+public class Redevable  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,7 @@ public class Redevable implements Serializable {
 
     @Transient
     @OneToMany
+            @JsonIgnore
     List<Terrain> terrains;
 
     public Redevable(String nom, String prenom, String cin) {

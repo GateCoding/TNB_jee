@@ -24,4 +24,9 @@ public class TauxController {
         ts.save(t);
     }
 
+    @GetMapping("taux/find/{id}")
+    Taux tauxById (@PathVariable("id") Long id){
+       return ts.findById(id);
+    }
+
 }

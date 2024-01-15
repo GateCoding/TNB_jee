@@ -28,6 +28,10 @@ public class TerrainController {
         ts.save(t);
     }
 
+    @GetMapping(path = "/terrain/find/{id}")
+    Terrain terrainById (@PathVariable("id") Long id){
+        return ts.findById(id);
+    }
     @GetMapping("/terrain/redevable/{cin}")
     public List<Terrain> getTerrainByRevendevale(@PathVariable("cin") String cin){
         return ts.findByRedevableCin(cin);
